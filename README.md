@@ -1,1 +1,1 @@
-custom extensions for /reg/nal custom bots, more documentation when i decide that it matters
+custom extensions for [/reg/nal](https://github.com/tyrantlink/regnal) custom bots, more documentation when i decide that it matters

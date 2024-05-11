@@ -1,0 +1,1 @@
+custom extensions for /reg/nal custom bots, more documentation when i decide that it matters

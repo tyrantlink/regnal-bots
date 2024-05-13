@@ -1,9 +1,9 @@
 from discord import slash_command,ApplicationContext
-from utils.pycord_classes import SubCog
+from .subcog import BotExtensionTetSubCog
 from discord.embeds import Embed
 
 
-class BotExtensionTetCommands(SubCog):
+class BotExtensionTetCommands(BotExtensionTetSubCog):
 	@slash_command(
 		name='aschente',
 		description='you\'ve read the rules',

@@ -1,0 +1,1 @@
+from .punishment_purge import BotExtensionTetPunishmentView

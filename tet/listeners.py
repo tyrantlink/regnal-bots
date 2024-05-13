@@ -1,8 +1,8 @@
 from .constants import REACTION_MESSAGES,ROLES,LIMITED_TO_ONE,PUNISHMENT_CHANNEL,PUNISHMENT_ROLE
 from discord import RawReactionActionEvent,Member,Forbidden
 from .views import BotExtensionTetPunishmentView
-from discord.ext.commands import Cog
 from .subcog import BotExtensionTetSubCog
+from discord.ext.commands import Cog
 
 
 class BotExtensionTetListeners(BotExtensionTetSubCog):

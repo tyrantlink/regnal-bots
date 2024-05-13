@@ -1,3 +1,4 @@
+from .views import BotExtensionTetPunishmentView
 from .listeners import BotExtensionTetListeners
 from .commands import BotExtensionTetCommands
 from discord.ext.commands import Cog
@@ -11,6 +12,7 @@ class BotExtensionTet(Cog,
 ):
 	def __init__(self,client:Client):
 		self.client = client
+		self.client.add_view(BotExtensionTetPunishmentView())
 
 def setup(client:Client):
 	client.add_cog(BotExtensionTet(client))

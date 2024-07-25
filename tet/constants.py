@@ -1,6 +1,8 @@
 """hardcoded garbage because i don't wanna remake the role menu"""
 
 
+GUILD_ID = 305627343895003136
+
 DISBOARDERS_ROLE = 306170169942736916
 REACTION_MESSAGES = [
     905127092017049650,

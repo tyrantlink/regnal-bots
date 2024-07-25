@@ -1,4 +1,4 @@
-from .constants import REACTION_MESSAGES, ROLES, LIMITED_TO_ONE, PUNISHMENT_CHANNEL, PUNISHMENT_ROLE
+from .constants import REACTION_MESSAGES, ROLES, LIMITED_TO_ONE, PUNISHMENT_CHANNEL, PUNISHMENT_ROLE, GUILD_ID
 from discord import RawReactionActionEvent, Member, Forbidden
 from .views import BotExtensionTetPunishmentView
 from .subcog import BotExtensionTetSubCog
@@ -60,18 +60,26 @@ class BotExtensionTetListeners(BotExtensionTetSubCog):
 
     @Cog.listener()
     async def on_member_update(self, before: Member, after: Member) -> None:
+        if after.guild.id != GUILD_ID:
+            return
+
         if before.roles == after.roles:
             return
+        
+        role = after.guild.get_role(PUNISHMENT_ROLE)
 
-        if PUNISHMENT_ROLE not in [role.id for role in before.roles]:
+        if role is None:
             return
-
-        if PUNISHMENT_ROLE in [role.id for role in after.roles]:
+        
+        if role.members:
             return
 
         channel = before.guild.get_channel(PUNISHMENT_CHANNEL)
 
         if channel is None:
+            return
+        
+        if not await channel.history(limit=1).flatten():
             return
 
         view = BotExtensionTetPunishmentView()

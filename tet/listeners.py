@@ -70,7 +70,10 @@ class BotExtensionTetListeners(BotExtensionTetSubCog):
 
         if role is None:
             return
-        
+
+        if not (role in before.roles and role not in after.roles):
+            return
+
         if role.members:
             return
 

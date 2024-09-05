@@ -60,35 +60,9 @@ class BotExtensionTetListeners(BotExtensionTetSubCog):
 
     @Cog.listener()
     async def on_member_update(self, before: Member, after: Member) -> None:
-        if after.guild.id != GUILD_ID:
+        if not self.member_update_validator(before, after):
             return
 
-        if before.roles == after.roles:
-            return
-        
-        role = after.guild.get_role(PUNISHMENT_ROLE)
-
-        if role is None:
-            return
-
-        if not (role in before.roles and role not in after.roles):
-            return
-
-        if role.members:
-            return
-
-        channel = before.guild.get_channel(PUNISHMENT_CHANNEL)
-
-        if channel is None:
-            return
-        
-        if not await channel.history(limit=1).flatten():
-            return
-
-        view = BotExtensionTetPunishmentView()
-
-        await channel.send(
-            embed=view.embed(
-                before,
-                await self.client.helpers.embed_color(before.guild.id)),
-            view=view)
+        await self.auto_purge(before, after)
+        await self.store_roles(before, after)
+        await self.restore_roles(before, after)

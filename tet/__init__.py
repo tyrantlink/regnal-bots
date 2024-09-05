@@ -1,6 +1,7 @@
 from .views import BotExtensionTetPunishmentView
 from .listeners import BotExtensionTetListeners
 from .commands import BotExtensionTetCommands
+from discord import Role, TextChannel, Member
 from discord.ext.commands import Cog
 from client import Client
 
@@ -15,6 +16,9 @@ class BotExtensionTet(
     def __init__(self, client: Client):
         self.client = client
         self.client.add_view(BotExtensionTetPunishmentView())
+        self.roles: dict[str, Role] = {}
+        self.punishment_channel: TextChannel | None = None
+        self.stored_roles: dict[Member, list[Role]] = {}
 
 
 def setup(client: Client):

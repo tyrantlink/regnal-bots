@@ -2,6 +2,7 @@ from .views import BotExtensionTetPunishmentView
 from .listeners import BotExtensionTetListeners
 from .commands import BotExtensionTetCommands
 from discord import Role, TextChannel, Member
+from .logic import BotExtensionTetLogic
 from discord.ext.commands import Cog
 from client import Client
 
@@ -11,7 +12,8 @@ from client import Client
 class BotExtensionTet(
     Cog,
     BotExtensionTetListeners,
-    BotExtensionTetCommands
+    BotExtensionTetCommands,
+    BotExtensionTetLogic
 ):
     def __init__(self, client: Client):
         self.client = client

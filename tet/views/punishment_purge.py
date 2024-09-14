@@ -54,7 +54,7 @@ class BotExtensionTetPunishmentView(View):
 
         messages = [
             f'{message.author.display_name}: {message.content}'
-            for message in interaction.channel.history(limit=100000, oldest_first=True)
+            async for message in interaction.channel.history(limit=100000, oldest_first=True)
         ]
 
         await channel.send(
@@ -83,7 +83,7 @@ class BotExtensionTetPunishmentView(View):
 
         messages = [
             f'{message.author.display_name}: {message.content}'
-            for message in interaction.channel.history(limit=100000, oldest_first=True)
+            async for message in interaction.channel.history(limit=100000, oldest_first=True)
         ]
 
         await channel.send(

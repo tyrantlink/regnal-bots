@@ -57,15 +57,21 @@ class BotExtensionTetPunishmentView(View):
         await interaction.response.defer(invisible=False)
 
         messages = [
-            f'{message.author.display_name}: {message.content}'
+            (
+                f'{message.author.display_name}: {message.content}'
+                + '\n{'+'}{'.join([attachment.filename for attachment in message.attachments])+'}'
+                if message.attachments
+                else ''
+            )
             async for message in interaction.channel.history(limit=100000, oldest_first=True)
+            if message is not None and (message.content or message.attachments)
         ]
 
         await channel.send(
             file=File(StringIO('\n'.join(messages)), filename='archive.txt')
         )
 
-        await interaction.response.send_message('channel has been archived', ephemeral=True)
+        await interaction.followup.send('channel has been archived', ephemeral=True)
 
     @button(
         label='archive, then purge',
@@ -86,8 +92,14 @@ class BotExtensionTetPunishmentView(View):
         await interaction.response.defer(invisible=False)
 
         messages = [
-            f'{message.author.display_name}: {message.content}'
+            (
+                f'{message.author.display_name}: {message.content}'
+                + '\n{'+'}{'.join([attachment.filename for attachment in message.attachments])+'}'
+                if message.attachments
+                else ''
+            )
             async for message in interaction.channel.history(limit=100000, oldest_first=True)
+            if message is not None and (message.content or message.attachments)
         ]
 
         await channel.send(
@@ -98,4 +110,4 @@ class BotExtensionTetPunishmentView(View):
             limit=10000,
             reason=f'{interaction.user.name} purged all messages')
 
-        await interaction.response.send_message('channel has been archived and purged', ephemeral=True)
+        await interaction.followup.send('channel has been archived and purged', ephemeral=True)

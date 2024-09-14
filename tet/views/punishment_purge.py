@@ -13,8 +13,8 @@ class BotExtensionTetPunishmentView(View):
     def embed(self, user: Member, color: int) -> Embed:
         return Embed(
             title='auto purge',
-            description=f'{user.mention} has lost the <@&{
-                PUNISHMENT_ROLE}> role\n\nwould you like to purge this channel?',
+            description=(
+                f'{user.mention} has lost the <@&{PUNISHMENT_ROLE}> role\n\nwould you like to purge this channel?'),
             color=color)
 
     @button(

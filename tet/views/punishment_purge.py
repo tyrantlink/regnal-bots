@@ -58,7 +58,7 @@ class BotExtensionTetPunishmentView(View):
 
         messages = [
             (
-                f'{message.author.display_name}: {message.content}'
+                f'{message.author.name}: {message.content}'
                 + (
                     '\n{'+'}{'.join([attachment.filename for attachment in message.attachments])+'}'
                     if message.attachments
@@ -95,7 +95,7 @@ class BotExtensionTetPunishmentView(View):
 
         messages = [
             (
-                f'{message.author.display_name}: {message.content}'
+                f'{message.author.name}: {message.content}'
                 + (
                     '\n{'+'}{'.join([attachment.filename for attachment in message.attachments])+'}'
                     if message.attachments

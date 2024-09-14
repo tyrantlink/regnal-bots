@@ -8,7 +8,11 @@ from io import StringIO
 class BotExtensionTetPunishmentView(View):
     def __init__(self) -> None:
         super().__init__(timeout=None)
-        self.add_items(self.button_purge, self.button_dismiss)
+        self.add_items(
+            self.button_purge,
+            self.button_dismiss,
+            self.button_archive,
+            self.button_archive_purge)
 
     def embed(self, user: Member, color: int) -> Embed:
         return Embed(

@@ -54,14 +54,16 @@ class BotExtensionTetPunishmentView(View):
             await interaction.response.send_message('archive channel not found', ephemeral=True)
             return
 
-        await interaction.response.defer(invisible=False)
+        await interaction.response.defer(ephemeral=True)
 
         messages = [
             (
                 f'{message.author.display_name}: {message.content}'
-                + '\n{'+'}{'.join([attachment.filename for attachment in message.attachments])+'}'
-                if message.attachments
-                else ''
+                + (
+                    '\n{'+'}{'.join([attachment.filename for attachment in message.attachments])+'}'
+                    if message.attachments
+                    else ''
+                )
             )
             async for message in interaction.channel.history(limit=100000, oldest_first=True)
             if message is not None and (message.content or message.attachments)
@@ -89,14 +91,16 @@ class BotExtensionTetPunishmentView(View):
             await interaction.response.send_message('archive channel not found', ephemeral=True)
             return
 
-        await interaction.response.defer(invisible=False)
+        await interaction.response.defer(ephemeral=True)
 
         messages = [
             (
                 f'{message.author.display_name}: {message.content}'
-                + '\n{'+'}{'.join([attachment.filename for attachment in message.attachments])+'}'
-                if message.attachments
-                else ''
+                + (
+                    '\n{'+'}{'.join([attachment.filename for attachment in message.attachments])+'}'
+                    if message.attachments
+                    else ''
+                )
             )
             async for message in interaction.channel.history(limit=100000, oldest_first=True)
             if message is not None and (message.content or message.attachments)
